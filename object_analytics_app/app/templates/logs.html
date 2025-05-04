@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Logs & Statistics</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Logs & Statistics</h1>
+
+    <h2>Object Counts</h2>
+    <ul>
+        {% for key, value in object_counts.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Region Counts</h2>
+    <ul>
+        {% for region, count in region_counts.items() %}
+            <li>{{ region }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Speed Information</h2>
+    <ul>
+        {% for key, value in speed_info.items() %}
+            <li>{{ key }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+
+    <p><a href="{{ url_for('index') }}">Back to Video Feed</a></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Intelligent Object Counting and Speed Monitoring System using YOLOv8</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Object Analytics</h1>
+
+    <form method="POST" action="/upload" enctype="multipart/form-data">
+        <label for="video">Upload Video:</label>
+        <input type="file" name="video" accept="video/*" required>
+        <input type="submit" value="Upload">
+    </form>
+
+    {% if upload_success %}
+        <p class="success">Video uploaded successfully. Live feed below.</p>
+    {% endif %}
+
+    <h2>Live Video Feed</h2>
+    <img src="{{ url_for('video_feed') }}" width="1020">
+
+    <p><a href="{{ url_for('logs') }}">View Logs/Statistics</a></p>
+</body>
+</html>

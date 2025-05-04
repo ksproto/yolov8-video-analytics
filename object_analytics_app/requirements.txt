@@ -1,0 +1,8 @@
+flask
+opencv-python
+torch>=1.8.0
+ultralytics
+numpy
+Pillow
+scipy # For distance calculations in speed estimation
+# Add any other libraries you might need for tracking (e.g., deepsort)
