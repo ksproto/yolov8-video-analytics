@@ -11,7 +11,8 @@ COPY app /app/app
 COPY models /app/models
 COPY app/coco.txt /app/
 COPY app/tracker.py /app/app/
-COPY models/yolov8s.pt /app/models/
+COPY models/yolov8s.pt /app/models/yolov8s.pt
+
 
 ENV FLASK_APP=app/main.py
 EXPOSE 5000
