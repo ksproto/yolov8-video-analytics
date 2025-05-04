@@ -17,7 +17,7 @@ Features
 
 
 
-###Key Considerations:
+Key Considerations:
 
 YOLOv8 Integration: The ultralytics library provides a straightforward way to load and run YOLOv8 models in Python.
 Object Tracking: Implementing robust object tracking can be complex. Consider using well-established tracking algorithms or libraries.
