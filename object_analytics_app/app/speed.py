@@ -18,13 +18,28 @@ def RGB(event, x, y, flags, param):
 cv2.namedWindow('RGB')
 cv2.setMouseCallback('RGB', RGB)
 
-cap=cv2.VideoCapture('veh2.mp4')
+cap=cv2.VideoCapture('D:/object_analytics_app/sample_video/veh2.mp4')
 
 
-my_file = open("coco.txt", "r")
+# Fix file path
+my_file = open(r"D:/object_analytics_app/app/coco.txt", "r")
+
+# Fix video path
+cap = cv2.VideoCapture(r"D:/object_analytics_app/sample_videos/veh2.mp4")
+import cv2
+
+# Use cv2.CAP_MSMF (or CAP_FFMPEG if that works better)
+#cap = cv2.VideoCapture(r"'D:/object_analytics_app/sample_videos/veh2.mp4", cv2.CAP_MSMF)
+
+
+if not cap.isOpened():
+    print("❌ Error: Could not open video file.")
+    exit()
+
+
 data = my_file.read()
 class_list = data.split("\n") 
-#print(class_list)
+print(class_list)
 
 count=0
 
@@ -53,10 +68,10 @@ while True:
    
 
     results=model.predict(frame)
- #   print(results)
+    print(results)
     a=results[0].boxes.data
     px=pd.DataFrame(a).astype("float")
-#    print(px)
+    print(px)
     list=[]
              
     for index,row in px.iterrows():
@@ -70,12 +85,20 @@ while True:
         c=class_list[d]
         if 'car' in c:
             list.append([x1,y1,x2,y2])
+        if 'truck' in c:
+            list.append([x1,y1,x2,y2])
+        if 'person' in c:
+            list.append([x1,y1,x2,y2])
+        if 'bicycle' in c:
+            list.append([x1,y1,x2,y2])
+        if 'traffic light' in c:
+            list.append([x1,y1,x2,y2])
     bbox_id=tracker.update(list)
     for bbox in bbox_id:
         x3,y3,x4,y4,id=bbox
         cx=int(x3+x4)//2
         cy=int(y3+y4)//2
-        
+        print(bbox_id)
         cv2.rectangle(frame,(x3,y3),(x4,y4),(0,0,255),2)
         
 
@@ -89,9 +112,13 @@ while True:
              if counter.count(id)==0:
                 counter.append(id)
                 distance = 10 # meters
+                
+                                
+                
                 a_speed_ms = distance / elapsed_time
                 a_speed_kh = a_speed_ms * 3.6
                 cv2.circle(frame,(cx,cy),4,(0,0,255),-1)
+            
                 cv2.putText(frame,str(id),(x3,y3),cv2.FONT_HERSHEY_COMPLEX,0.6,(255,255,255),1)
                 cv2.putText(frame,str(int(a_speed_kh))+'Km/h',(x4,y4 ),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,255,255),2)
 
@@ -115,7 +142,7 @@ while True:
                 cv2.circle(frame,(cx,cy),4,(0,0,255),-1)
                 cv2.putText(frame,str(id),(x3,y3),cv2.FONT_HERSHEY_COMPLEX,0.6,(255,255,255),1)
                 cv2.putText(frame,str(int(a_speed_kh1))+'Km/h',(x4,y4),cv2.FONT_HERSHEY_COMPLEX,0.8,(0,255,255),2)
-
+                #print(int(a_speed_kh1))
            
 
     cv2.line(frame,(274,cy1),(814,cy1),(255,255,255),1)

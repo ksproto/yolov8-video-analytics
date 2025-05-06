@@ -1,8 +1,7 @@
-flask
-opencv-python
-torch>=1.8.0
-ultralytics
 numpy
+flask==2.3.3
+opencv-python==4.9.0.80
+torch==2.2.1
+ultralytics==8.2.13
 Pillow
-scipy # For distance calculations in speed estimation
-# Add any other libraries you might need for tracking (e.g., deepsort)
+scipy
