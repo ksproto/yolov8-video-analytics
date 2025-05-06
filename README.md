@@ -6,6 +6,12 @@ movement in surveillance footage using YOLOv8. The system should be capable of
 region-based counting and estimating object speed, and deployed as a Flask-based web app 
 containerized with Docker. 
 
+Struture
+
+
+![Uploading Screenshot 2025-05-06 171110.png…]()
+
+
 Features 
 - Trained YOLOv8 model weights or training instructions.
 - Flask web application with UI for video input, visual outputs, and stats. 
